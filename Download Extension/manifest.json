@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "name": "M3U8 Extractor",
+    "version": "1.0",
+    "description": "Extracts and displays M3U8 links from the current webpage.",
+    "permissions": ["activeTab"],
+    "browser_action": {
+      "default_icon": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+      },
+      "default_popup": "popup.html"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ]
+  }
+  
