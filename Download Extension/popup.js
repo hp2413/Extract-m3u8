@@ -14,7 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         for (var title in result) {
           var linkElement = document.createElement('p');
-          linkElement.textContent = ' Title : ' + title + ' \n \n \n || URI : ' + result[title] + '\n';
+         
+          // linkElement.textContent = ' Title : ' + title + ' \n \n \n || URI : ' + result[title] + '\n';
+          const script = `echo '{"title": "${title}", "url": "${result[title]}"}' | /Library/Frameworks/Python.framework/Versions/3.11/bin/python3 "/Users/harsh_1301/Work/Personal work/Extract-m3u8/Download.py"`;
+
+          linkElement.textContent = script;
+
           
           // Add a button to trigger the Python script
           var executeButton = document.createElement('button');
