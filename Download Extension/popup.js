@@ -21,16 +21,24 @@ document.addEventListener('DOMContentLoaded', function() {
           linkElement.textContent = script;
 
           
-          // Add a button to trigger the Python script
-          var executeButton = document.createElement('button');
-          executeButton.textContent = 'download the video';
-          executeButton.addEventListener('click', function() {
-            executePythonScript(title, result[title]);
-          });
+          // // Add a button to trigger the Python script
+          // var executeButton = document.createElement('button');
+          // executeButton.textContent = 'download the video';
+          // executeButton.addEventListener('click', function() {
+          //   executePythonScript(title, result[title]);
+          // });
+
+           // Add a button to copy the linkElement.textContent content
+           var copyButton = document.createElement('button');
+           copyButton.textContent = 'Copy Command';
+           copyButton.addEventListener('click', function() {
+               copyToClipboard(linkElement.textContent);
+           });
   
           // Append both link and button to the container
           linksContainer.appendChild(linkElement);
-          linksContainer.appendChild(executeButton);
+          // linksContainer.appendChild(executeButton);
+          linksContainer.appendChild(copyButton);
         }
       }
     }
@@ -38,6 +46,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Send a message to the background script to execute the Python script
         chrome.runtime.sendMessage({ action: 'executePythonScript', title: title, url: url });
       }
+
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(function() {
+            // alert('Copied to clipboard');
+        }).catch(function(err) {
+            console.error('Failed to copy: ', err);
+        });
+    }
 
   });
   
