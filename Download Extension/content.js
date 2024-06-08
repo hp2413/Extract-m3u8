@@ -1,7 +1,6 @@
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.action === 'extractM3U8Links') {
       var result = {};
-      self.result = 
   
       // Extract embed_url and Title from the __NEXT_DATA__ script tag
       console.log(document.body);
@@ -34,7 +33,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                 if (extractedContent.includes('.m3u8')) {
                   var inputString = extractedContent;
                   // Regular expressions to extract title and links
-                  var titleRegex = /\\"title\\":\\"([^\\"]+)\\"/;
+                  // var titleRegex = /\\"title\\":\\"([^\\"]+)\\"/;
+                  var titleRegex = /\\"title\\":\\"([^\\"]+\s*\|\s*[^\\"]+)\\"/;
                   var linkRegex = /\\"(720|1080|360)\\":\\"([^\\"]+)\\"/g;
 
                   // Extract title
